@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3월 28일 미션: 사사반 오리엔테이션</title>
+    <title>3월 28일: 사사반 오리엔테이션</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
     <style>
         body {
@@ -15,9 +15,9 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            height: 90vh; /* 화면 높이 설정 */
-            overflow: hidden; /* 스크롤 방지 */
-            font-weight: 700; /* 모든 글씨 볼드체 */
+            height: 90vh;
+            overflow: hidden;
+            font-weight: 700;
         }
         .top-bar {
             display: flex;
@@ -61,30 +61,27 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            opacity: 0; /* 기본값 투명 */
-            transform: rotateX(-10deg); /* 살짝 뒤로 기울임 */
+            opacity: 0;
+            transform: rotateX(-10deg);
             transition: all 0.5s ease-in-out;
-            pointer-events: none; /* 클릭 방지 */
+            pointer-events: none;
+            overflow-y: auto;
         }
         
-        /* 활성화된 슬라이드 */
         .mission-slide.active {
             opacity: 1;
-            transform: rotateX(0deg); /* 원위치 */
-            pointer-events: auto; /* 클릭 가능 */
+            transform: rotateX(0deg);
+            pointer-events: auto;
         }
         
-        /* 제목 스타일 */
         h1 { color: #1a73e8; font-size: 1.8rem; text-align: center; margin-bottom: 30px; }
         h2 { font-size: 1.4rem; color: #333; margin-top: 0; font-weight: 800; }
-        h3 { font-size: 1.2rem; color: #1a73e8; font-weight: 800; }
+        h3 { font-size: 1.2rem; color: #1a73e8; font-weight: 800; margin-bottom: 10px; }
         
-        /* 내용 스타일 */
         p { font-size: 1.1rem; line-height: 1.8; margin-top: 0; }
         ul { padding-left: 20px; line-height: 1.8; font-size: 1.1rem; }
         li { margin-bottom: 12px; }
         
-        /* 하단 컨트롤 바 */
         .control-bar {
             display: flex;
             justify-content: space-between;
@@ -107,10 +104,9 @@
         .nav-btn:hover { background-color: #155bb5; }
         .nav-btn:disabled { background-color: #e4e6eb; color: #999; cursor: not-allowed; }
         
-        /* 진행도 표시기 */
-        .progress-dots { display: flex; gap: 8px; }
-        .dot { width: 12px; height: 12px; background-color: #e4e6eb; border-radius: 50%; transition: all 0.3s; }
-        .dot.active { background-color: #1a73e8; width: 30px; border-radius: 6px; }
+        .progress-dots { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+        .dot { width: 10px; height: 10px; background-color: #e4e6eb; border-radius: 50%; transition: all 0.3s; }
+        .dot.active { background-color: #1a73e8; width: 25px; border-radius: 5px; }
         
         .highlight {
             background-color: #fff3cd;
@@ -121,6 +117,8 @@
             margin-top: 20px;
             text-align: center;
         }
+
+        .grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
     </style>
 </head>
 <body>
@@ -130,63 +128,139 @@
         <span class="date">2026. 03. 28</span>
     </div>
 
-    <h1>🎯 사사반 첫날: 미션 브리핑</h1>
+    <h1>🚀 2026년 사사반 오리엔테이션</h1>
 
     <div class="slide-container">
         
-        <div class="mission-slide active" style="border-top-color: #3498db;">
-            <h2>M-00. LV.1 신입 개발자 환영회!</h2>
-            <p><strong>"파이썬 코드 10줄로 드론을 날린다. 드론에게 지능을 심어보자!"</strong></p>
-            <p>올해 10월, 여러분이 직접 만든 AI 드론 시스템이 무대에 오릅니다. 카메라로 물체를 인식하고 드론이 자율 반응하는 시스템을 직접 만들고 발표합니다.</p>
+        <div class="mission-slide active" style="border-top-color: #1a73e8;">
+            <h2 style="font-size: 1.8rem; text-align: center; color: #1a73e8;">2026년 사사반</h2>
+            <p style="text-align: center; font-size: 1.3rem;">"파이썬 코드 10줄로 드론을 날린다" [cite: 2]</p>
+            <p style="text-align: center; font-size: 1.3rem;">"드론에게 지능을 심어보자!" [cite: 3]</p>
+            <div class="highlight" style="margin-top: 40px;">
+                <p>예. 카메라가 사람을 보면 드론이 따라간다[cite: 4]. 올해 직접 만들어 보자[cite: 5].</p>
+                <p>10월, 내가 만든 AI 드론을 발표한다[cite: 6].</p>
+            </div>
+            <p style="text-align: center; margin-top: 30px; color: #666; font-size: 1rem;">
+                2026. 3. 28 (토) IT관 701/721호 | 이도훈 교수·조교 김보현 [cite: 7]
+            </p>
+        </div>
+
+        <div class="mission-slide" style="border-top-color: #34495e;">
+            <h2>MISSION BRIEFING [cite: 8]</h2>
+            <p>오늘 뭐 하지? (40~60분) [cite: 9, 10]</p>
+            <ul>
+                <li><strong>M-01:</strong> 팀 소개 [cite: 11, 12]</li>
+                <li><strong>M-02:</strong> 이번 사사반에서 10월까지 뭘 하나(로드맵) [cite: 13, 14]</li>
+                <li><strong>M-03:</strong> 기술 쇼케이스 - 실제로 보자 [cite: 15, 16]</li>
+                <li><strong>M-04:</strong> 프로젝트 아이디어 배틀 [cite: 17, 18]</li>
+                <li><strong>M-05:</strong> 팀 규칙 & 다음 임무 하달 [cite: 19, 20]</li>
+            </ul>
+        </div>
+
+        <div class="mission-slide" style="border-top-color: #3498db;">
+            <h2>M-01. 팀 빌딩 & 팀원 소개 [cite: 21, 22]</h2>
+            <p>우리 팀의 LV.1 신입 개발자 [cite: 36]</p>
+            <div class="grid-layout">
+                <div>✔️ 남동권 [cite: 32] (스킬 해금 예정 [cite: 40])</div>
+                <div>✔️ 박기태 [cite: 33] (스킬 해금 예정 [cite: 41])</div>
+                <div>✔️ 성운택 [cite: 34] (스킬 해금 예정 [cite: 42])</div>
+                <div>✔️ 최우진 [cite: 35] (스킬 해금 예정 [cite: 43])</div>
+            </div>
+            <div class="highlight">
+                <h3>📝 자기소개 퀘스트 [cite: 44]</h3>
+                <ul style="text-align: left;">
+                    <li>① 이름 ② 파이썬 경험 한 줄 ③ 드론 써봤나요? ④ 이 팀에 기대하는 것 ⑤ 팀 이름 아이디어 1개 [cite: 45]</li>
+                </ul>
+            </div>
         </div>
 
         <div class="mission-slide" style="border-top-color: #9b59b6;">
-            <h2>M-01. 팀 빌딩 & 자기소개 퀘스트</h2>
-            <p>우리 팀의 LV.1 개발자: 남동권, 박기태, 성운택, 최우진</p>
-            <p><strong>📝 자기소개 퀘스트:</strong></p>
+            <h2>M-02. 2026 시즌 로드맵 [cite: 46, 47]</h2>
             <ul>
-                <li>이름, 파이썬 경험 한 줄, 드론 써봤나요?</li>
-                <li>이 팀에 기대하는 것</li>
-                <li>우리 팀 이름 아이디어 1개</li>
+                <li><strong>ACT 1 (3월~5월): 기초 장착</strong> [cite: 48, 49]<br>파이썬 / AI 인식 / 드론 조작 [cite: 50-52]</li>
+                <li><strong>ACT 2 (5월~7월): 시스템 구축</strong> [cite: 53, 54]<br>환경 세팅 / 주제 선정 / 카메라 연동 [cite: 55-57]</li>
+                <li><strong>ACT 3 (8월~10월): 완성 & 발표</strong> [cite: 58, 59]<br>보고서 작성 / 발표 준비 [cite: 60, 61]</li>
             </ul>
+            <div class="highlight" style="background-color: #ffeaa7;">
+                <strong>FINAL BOSS:</strong> 10월 17일 사사과정 연구결과 발표회 [cite: 63]<br>
+                <span style="font-size: 0.95rem;">카메라로 물체를 인식하고 드론이 자율 반응하는 AI 시스템 - 직접 만들고, 직접 발표합니다. [cite: 64]</span>
+            </div>
         </div>
 
-        <div class="mission-slide" style="border-top-color: #2ecc71;">
-            <h2>M-02. 로드맵 & M-03. 기술 쇼케이스</h2>
-            <h3>🗺️ 2026 시즌 로드맵:</h3>
+        <div class="mission-slide" style="border-top-color: #f1c40f;">
+            <h2>이미 세상에 있는 것들 (드론 + AI) [cite: 65, 66]</h2>
+            <p>여러분이 올해 배울 기술이 이미 이렇게 쓰이고 있습니다. [cite: 67]</p>
             <ul>
-                <li>ACT 1. 기초 장착 (3~5월)</li>
-                <li>ACT 2. 시스템 구축 (5~7월)</li>
-                <li>ACT 3. 완성 & 발표 (8~10월)</li>
+                <li><strong>아마존 Prime Air:</strong> AI가 장애물을 피하며 집 앞까지 30분 내 배송합니다. [cite: 68, 69, 72]</li>
+                <li><strong>농업 방제 드론:</strong> 카메라로 병충해 지역을 탐지해 자동으로 약제를 살포합니다. (사람보다 40배 빠름) [cite: 73-75]</li>
+                <li><strong>재난 구조 드론:</strong> 산불·지진 현장에서 열화상+AI로 생존자 체온을 감지해 위치를 알립니다. [cite: 71, 77, 80]</li>
+                <li><strong>영화 촬영 드론:</strong> 배우를 인식해 카메라맨 없이 자동으로 따라가며 촬영합니다. [cite: 78, 79, 81]</li>
             </ul>
-            <h3>🚀 기술 쇼케이스:</h3>
-            <p>파이썬+AI, 드론 제어 등 실제 기술 예시 미리보기</p>
         </div>
 
         <div class="mission-slide" style="border-top-color: #e67e22;">
-            <h2>M-04. 아이디어 배틀!</h2>
-            <p>어떤 AI 드론을 만들까? 제약 없이 아이디어를 내세요!</p>
-            <p><strong>예시:</strong></p>
+            <h2>M-03. 기술 쇼케이스 (눈으로 봐야 믿는다) [cite: 84, 85]</h2>
             <ul>
-                <li>순찰 드론, 농업 모니터링, 스포츠 추적 카메라 등</li>
+                <li><strong>01 파이썬 + AI 객체인식:</strong> 사진 1장에서 고양이·자동차·사람을 동시에 찾아냅니다 (다중객체인식). [cite: 86-89]</li>
+                <li><strong>02 코드 10줄 드론 비행:</strong> 키보드 없이, 코드만으로 드론을 이·착륙시킵니다 (드론제어 프로그램). [cite: 90-93]</li>
+                <li><strong>03 AI 드론 자동 추적:</strong> 카메라가 사람을 인식하면 드론이 스스로 따라갑니다 (추적 시연 영상). [cite: 94-96, 98]</li>
             </ul>
+            <p style="text-align: center; color: #d35400; margin-top: 15px;">이 세 가지를 합치면 어떤 문제를 풀 수 있을까? → 다음 슬라이드에서 아이디어 배틀! [cite: 97]</p>
+        </div>
+
+        <div class="mission-slide" style="border-top-color: #2ecc71;">
+            <h2>M-04. 프로젝트 아이디어 배틀 [cite: 99]</h2>
+            <p>어떤 AI 드론을 만들까? 제약 없이 아이디어를 내세요 - 말이 안 돼도 됩니다! [cite: 100, 101]</p>
+            <div class="grid-layout">
+                <div>🚨 <strong>순찰 드론:</strong> 화재/연기 감지, 사각지대 자동 감시 [cite: 102, 103, 105, 106]</div>
+                <div>🌱 <strong>농업 모니터링:</strong> 작물 이상 자동 탐지 [cite: 104, 107]</div>
+                <div>⚽ <strong>스포츠 카메라:</strong> 공·선수 자동 추적 [cite: 108, 111]</div>
+                <div>👋 <strong>손짓 제어:</strong> 제스처로 드론 조종 [cite: 109, 112]</div>
+            </div>
+            <div class="highlight">
+                <strong>[미션]</strong> 5월 수업(5/2) 전까지 - 내 아이디어 2개를 메모해 오기! [cite: 114]
+            </div>
         </div>
 
         <div class="mission-slide" style="border-top-color: #e74c3c;">
-            <h2>M-05. 팀 규칙 & 다음 임무 하달</h2>
-            <p><strong>팀 규칙:</strong> 어떤 말도 존중, 비판 금지! 막히면 조교님께 바로 연락!</p>
-            <p><strong>출결:</strong> 힘들 때는 반드시 미리 조교에게 연락하기</p>
-            <div class="highlight">
-                🚨 [필수 과제] 4/4(토) 전까지 Python 3.11+ 및 VS Code 설치해오기!
+            <h2>M-05. 팀 프로토콜 & NEXT MISSION [cite: 116-118]</h2>
+            <div style="font-size: 1rem;">
+                <p><strong>[팀 프로토콜]</strong></p>
+                <ul>
+                    <li><strong>연락/팀워크:</strong> 단톡방 개설. 막히면 조교님께 바로 연락! [cite: 120, 121, 133, 134]</li>
+                    <li><strong>기록/출결:</strong> 연구/실습노트 매 수업 후 기록 필수! 출석이 힘들 때는 반드시 미리 조교에게 연락하기 바랍니다. [cite: 124, 127, 128]</li>
+                    <li><strong>아이디어:</strong> 어떤 말도 존중, 비판 금지 [cite: 130, 131]</li>
+                </ul>
             </div>
+            <div class="highlight" style="padding: 10px; margin-top: 10px;">
+                <h3 style="margin: 0 0 10px 0;">🚀 4/4(토) NEXT MISSION [cite: 118, 119]</h3>
+                <ul style="text-align: left; font-size: 1rem; margin-bottom: 0;">
+                    <li><strong>09:00-13:00</strong> 파이썬 기계학습 소개 (강의) [cite: 122, 123]</li>
+                    <li><strong>14:00-18:00</strong> 기계학습 프로그래밍 실습 [cite: 125, 126]</li>
+                    <li style="color: #c0392b;"><strong>수업 전 준비:</strong> Python 3.11+ 설치 및 VS Code + Python 확장 설치 [cite: 129, 132, 135]</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mission-slide" style="border-top-color: #2c3e50; text-align: center;">
+            <h2 style="font-size: 2.5rem; color: #2c3e50; margin-top: 20px;">미션 시작. [cite: 137, 138]</h2>
+            <p style="font-size: 1.3rem;">올해 10월, 여러분의 AI 드론 시스템이 무대에 오릅니다. [cite: 139]</p>
+            
+            <div style="margin-top: 40px; background-color: #f8f9fa; padding: 20px; border-radius: 10px;">
+                <p><strong>지도교수 이도훈</strong><br><span style="color: #666;">dohoon@pusan.ac.kr / 051-510-2491</span> [cite: 140, 141]</p>
+                <p><strong>조교 김보현</strong><br><span style="color: #666;">010-2645-5258</span> [cite: 142, 143]</p>
+            </div>
+            
+            <p style="margin-top: 30px; font-size: 0.9rem; color: #7f8c8d;">
+                부산대학교 과학영재교육원 2026학년도 사사과정 IT수학융합반 [cite: 144]
+            </p>
         </div>
 
     </div>
 
     <div class="control-bar">
         <button id="prev-btn" class="nav-btn" disabled>PREVIOUS</button>
-        <div id="progress-dots" class="progress-dots">
-            </div>
+        <div id="progress-dots" class="progress-dots"></div>
         <button id="next-btn" class="nav-btn">NEXT</button>
     </div>
 
@@ -197,7 +271,6 @@
         const progressDots = document.getElementById('progress-dots');
         let currentSlide = 0;
 
-        // 진행도 점 생성
         function createDots() {
             for (let i = 0; i < slides.length; i++) {
                 const dot = document.createElement('div');
@@ -207,35 +280,38 @@
             }
         }
 
-        // 진행도 점 업데이트
         function updateDots() {
             const dots = document.querySelectorAll('.dot');
             dots.forEach((dot, index) => {
                 if (index === currentSlide) dot.classList.add('active');
                 else dot.classList.remove('active');
-            } );
+            });
         }
 
-        // 슬라이드 쇼
         function showSlide(index) {
             slides.forEach(slide => slide.classList.remove('active'));
             slides[index].classList.add('active');
             
-            // 버튼 상태 업데이트
-            if (index === 0) prevBtn.disabled = true;
-            else prevBtn.disabled = false;
-            
-            if (index === slides.length - 1) nextBtn.disabled = true;
-            else nextBtn.disabled = false;
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === slides.length - 1;
             
             updateDots();
         }
 
-        // 이벤트 리스너
-        prevBtn.addEventListener('click', () => { currentSlide--; showSlide(currentSlide); } );
-        nextBtn.addEventListener('click', () => { currentSlide++; showSlide(currentSlide); } );
+        prevBtn.addEventListener('click', () => { 
+            if (currentSlide > 0) {
+                currentSlide--; 
+                showSlide(currentSlide); 
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => { 
+            if (currentSlide < slides.length - 1) {
+                currentSlide++; 
+                showSlide(currentSlide); 
+            }
+        });
 
-        // 초기화
         createDots();
     </script>
 
