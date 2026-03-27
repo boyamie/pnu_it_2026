@@ -60,11 +60,14 @@
             border-left: 6px solid #e4e6eb;
             text-align: left;
         }
-        .class-btn:hover {
+        
+        /* 활성화된 버튼 호버 효과 */
+        a.class-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.1);
             background-color: #f8fbff;
         }
+        
         /* 각 ACT별 버튼 왼쪽 띠 색상 차별화 */
         .act1-btn { border-left-color: #3498db; }
         .act2-btn { border-left-color: #2ecc71; }
@@ -72,6 +75,16 @@
         .final-btn { border-left-color: #e74c3c; background-color: #fff5f5; }
 
         .class-btn span { display: block; font-size: 0.9rem; color: #777; margin-top: 5px; font-weight: normal; }
+        
+        /* 잠금 처리된 버튼 스타일 */
+        .locked-btn {
+            background-color: #e9ecef;
+            color: #adb5bd;
+            border-left-color: #dee2e6;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .locked-btn span { color: #adb5bd; }
         
         .footer { margin-top: 50px; font-size: 0.9rem; color: #999; padding-bottom: 30px; }
     </style>
@@ -97,78 +110,79 @@
                 🐍 4/4 (토) - 파이썬 기계학습 기초
                 <span>기계학습 소개 및 프로그래밍 실습</span>
             </a>
-            <a href="./0418/index.html" class="class-btn act1-btn">
-                👁️ 4/18 (토) - CNN 및 객체인식 이해
+            
+            <div class="class-btn locked-btn">
+                🔒 4/18 (토) - CNN 및 객체인식 이해
                 <span>영상분류 및 객체인식 프로그래밍 실습</span>
-            </a>
-            <a href="./0425/index.html" class="class-btn act1-btn">
-                🚁 4/25 (토) - 드론의 이해와 작동법
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 4/25 (토) - 드론의 이해와 작동법
                 <span>드론 기본 작동 숙지</span>
-            </a>
-            <a href="./0502/index.html" class="class-btn act1-btn">
-                ⌨️ 5/2 (토) - 드론 제어 프로그래밍
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 5/2 (토) - 드론 제어 프로그래밍
                 <span>프로그램을 이용한 드론 제어 실습</span>
-            </a>
+            </div>
         </div>
     </div>
 
     <div class="act-section">
         <div class="act-title">🛠️ ACT 2. 시스템 구축 (5월~7월)</div>
         <div class="button-grid">
-            <a href="./0516/index.html" class="class-btn act2-btn">
-                ⚙️ 5/16 (토) - 프로젝트 개발 환경 구축 (1)
+            <div class="class-btn locked-btn">
+                🔒 5/16 (토) - 프로젝트 개발 환경 구축 (1)
                 <span>프로젝트 주제 발굴</span>
-            </a>
-            <a href="./0523/index.html" class="class-btn act2-btn">
-                ⚙️ 5/23 (토) - 프로젝트 개발 환경 구축 (2)
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 5/23 (토) - 프로젝트 개발 환경 구축 (2)
                 <span>환경 세팅 완료 및 점검</span>
-            </a>
-            <a href="./0530/index.html" class="class-btn act2-btn">
-                🧩 5/30 (토) - 주제 해결을 위한 구현
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 5/30 (토) - 주제 해결을 위한 구현
                 <span>본격적인 AI 드론 시스템 개발</span>
-            </a>
-            <a href="./0613/index.html" class="class-btn act2-btn">
-                📝 6/13 (토) - 특강: 보고서 작성
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 6/13 (토) - 특강: 보고서 작성
                 <span>영재원 주관 실시간 온라인 특강</span>
-            </a>
-            <a href="./0620/index.html" class="class-btn act2-btn">
-                📚 6/20 (토) - 보고서 작성을 위한 자료수집
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 6/20 (토) - 보고서 작성을 위한 자료수집
                 <span>탐구 과제 수행 및 데이터 정리</span>
-            </a>
-            <a href="./0627/index.html" class="class-btn act2-btn">
-                📊 6/27 (토) - 결과 보고서 작성 방법
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 6/27 (토) - 결과 보고서 작성 방법
                 <span>과학 보고서 작성 시작</span>
-            </a>
-            <a href="./0725/index.html" class="class-btn act2-btn">
-                🧪 7/25 (토) - 실험결과 검토
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 7/25 (토) - 실험결과 검토
                 <span>최종 데이터 확인 및 보고서 작성</span>
-            </a>
+            </div>
         </div>
     </div>
 
     <div class="act-section">
         <div class="act-title">🏆 ACT 3. 완성 & 발표 (8월~10월)</div>
         <div class="button-grid">
-            <a href="./0806/index.html" class="class-btn act3-btn">
-                📺 8/6 (목) - 사사과정 특강
+            <div class="class-btn locked-btn">
+                🔒 8/6 (목) - 사사과정 특강
                 <span>영재원 주관 동영상 강의</span>
-            </a>
-            <a href="./0813/index.html" class="class-btn act3-btn">
-                🔍 8/13 (토) - 보고서 및 발표자료 검토
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 8/13 (토) - 보고서 및 발표자료 검토
                 <span>결과물 1차 피드백</span>
-            </a>
-            <a href="./0905/index.html" class="class-btn act3-btn">
-                ✅ 9/5 (토) - 보고서 및 발표자료 완료
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 9/5 (토) - 보고서 및 발표자료 완료
                 <span>최종 결과물 마감</span>
-            </a>
-            <a href="./1010/index.html" class="class-btn act3-btn">
-                🎤 10/10 (토) - 발표회 최종 점검 및 리허설
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 10/10 (토) - 발표회 최종 점검 및 리허설
                 <span>실전 발표 연습</span>
-            </a>
-            <a href="./1017/index.html" class="class-btn final-btn">
-                👑 10/17 (토) - FINAL BOSS
-                <span style="color:#c0392b; font-weight:bold;">사사과정 연구결과 발표회 (영재원 주관)</span>
-            </a>
+            </div>
+            <div class="class-btn locked-btn">
+                🔒 10/17 (토) - FINAL BOSS
+                <span>사사과정 연구결과 발표회 (영재원 주관)</span>
+            </div>
         </div>
     </div>
 
