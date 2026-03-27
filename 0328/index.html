@@ -82,32 +82,13 @@
         ul { padding-left: 20px; line-height: 1.8; font-size: 1.1rem; }
         li { margin-bottom: 12px; }
         
-        /* 추가된 스타일: 이미지 및 인슬라이드 버튼 */
         .slide-img {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
         }
-        .slide-img:hover { transform: scale(1.02); }
-
-        .demo-btn {
-            display: inline-block;
-            background-color: #e74c3c;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            margin-top: 10px;
-            transition: all 0.2s;
-            font-weight: 700;
-        }
-        .demo-btn:hover { background-color: #c0392b; transform: translateY(-2px); }
 
         .control-bar {
             display: flex;
@@ -224,7 +205,7 @@
             <ul>
                 <li><strong>01 파이썬 + AI 객체인식:</strong> 사진에서 사람·자동차 찾아내기 (다중객체인식)</li>
                 <li><strong>02 코드 10줄 드론 비행:</strong> 코드로 드론을 이·착륙 (드론제어 프로그램)</li>
-                <li><strong>03 AI 드론 자동 추적:</strong> 카메라가 사람을 인식하면 드론이 따라가기 (시연 영상 보러가기)</li>
+                <li><strong>03 AI 드론 자동 추적:</strong> 카메라가 사람을 인식하면 드론이 따라가기</li>
             </ul>
             <p style="text-align: center; margin-top: 15px;">
                 <a href="https://www.youtube.com/results?search_query=drone+tracking+ai" target="_blank" class="demo-btn">▶ AI 드론 추적 영상 보기</a>
@@ -329,8 +310,6 @@
                 showSlide(currentSlide); 
             }
         });
-
-        // "Activate System" (Slid 1) or "Mission Start" (Slide 8) can have unique action buttons too.
 
         createDots();
     </script>
