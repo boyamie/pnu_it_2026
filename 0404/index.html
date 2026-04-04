@@ -22,7 +22,7 @@
             background-color: var(--bg-body) !important;
             color: var(--text-main) !important;
             padding: 20px;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
@@ -33,15 +33,15 @@
 
         p, ul, li {
             color: var(--text-main) !important;
-            font-size: 1rem;
+            font-size: 1.05rem;
             line-height: 1.7;
             margin-top: 0;
             margin-bottom: 10px;
         }
 
-        h1 { color: var(--color-primary) !important; font-size: 1.7rem; text-align: center; margin-bottom: 25px; margin-top: 5px; }
+        h1 { color: var(--color-primary) !important; font-size: 1.7rem; text-align: center; margin-bottom: 20px; margin-top: 5px; }
         h2 { font-size: 1.3rem; color: var(--text-header) !important; margin-top: 0; font-weight: 800; border-left: 5px solid var(--color-primary); padding-left: 10px; margin-bottom: 15px; }
-        h3 { font-size: 1.1rem; color: var(--color-primary) !important; font-weight: 800; margin-top: 15px; margin-bottom: 8px; }
+        h3 { font-size: 1.15rem; color: var(--color-primary) !important; font-weight: 800; margin-top: 15px; margin-bottom: 8px; }
         
         .mission-slide {
             position: absolute;
@@ -76,7 +76,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .control-bar { margin-top: 15px; margin-bottom: 0; padding: 5px 0; }
         
@@ -92,7 +92,7 @@
         .back-btn:hover { background-color: #d8dadf; }
         .date { font-size: 1rem; color: #555555; }
 
-        .progress-dots { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+        .progress-dots { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; max-width: 60%; }
         .dot { width: 10px; height: 10px; background-color: #e4e6eb; border-radius: 50%; transition: all 0.3s; }
         .dot.active { background-color: var(--color-primary); width: 25px; border-radius: 5px; }
 
@@ -120,25 +120,40 @@
             perspective: 1000px;
         }
 
+        /* 퀴즈 스타일 */
         .quiz-container { background-color: #f8fbff; padding: 20px; border-radius: 10px; border: 2px dashed var(--color-primary); margin-top: 15px; color: var(--text-main) !important; }
-        .quiz-question { font-size: 1.1rem; color: var(--text-header) !important; margin-bottom: 15px; text-align: left;}
+        .quiz-question { font-size: 1.15rem; color: var(--text-header) !important; margin-bottom: 15px; text-align: left;}
         .quiz-choices { display: flex; flex-direction: column; gap: 10px; }
         .quiz-choice {
             background-color: #ffffff;
             color: var(--text-header);
             border: 2px solid #e4e6eb;
-            padding: 12px 20px;
-            font-size: 1rem;
+            padding: 15px 20px;
+            font-size: 1.05rem;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
             font-weight: 700;
             text-align: left;
         }
-        .quiz-choice:hover { background-color: #f1f3f5; border-color: #adb5bd; }
+        .quiz-choice:hover:not(:disabled) { background-color: #f1f3f5; border-color: #adb5bd; transform: translateX(5px); }
         .quiz-choice.correct { background-color: #2ecc71 !important; color: #ffffff !important; border-color: #27ae60 !important; }
         .quiz-choice.wrong { background-color: #e74c3c !important; color: #ffffff !important; border-color: #c0392b !important; }
-        .quiz-feedback { margin-top: 15px; font-size: 1rem; font-weight: bold; text-align: center; display: none;}
+        
+        /* 풀이(해설) 영역 */
+        .quiz-feedback { 
+            margin-top: 15px; 
+            font-size: 1rem; 
+            font-weight: bold; 
+            text-align: left; 
+            display: none;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #bdc3c7;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            line-height: 1.6;
+        }
 
         .highlight {
             background-color: #fff3cd !important;
@@ -164,156 +179,193 @@
         
         <div class="mission-slide active" style="border-top-color: #1a73e8;">
             <h2>M-00. 오늘 수업 목표 및 환경 점검</h2>
-            <p>오늘 우리는 AI 드론에게 지능을 심어주기 위한 <strong>'데이터 처리 기술'</strong>의 핵심을 배웁니다.</p>
+            <p>오늘 우리는 AI 드론에게 지능을 심어주기 위한 <strong>'데이터 처리 및 AI 프레임워크 기술'</strong>의 핵심을 배웁니다.</p>
             <ul>
-                <li><strong>오전 (09:00~13:00):</strong> 필수 도구(Jupyter, VS Code) 익히기 & 파이썬 기초 복습</li>
-                <li><strong>오후 (14:00~18:00):</strong> 데이터 처리 왕! Numpy & Pandas, 그리고 <strong>PyTorch 기초 맛보기</strong></li>
+                <li><strong>오전:</strong> 필수 도구(Jupyter) 익히기 & 파이썬 기초 복습 (메모리 구조)</li>
+                <li><strong>오후:</strong> 데이터 처리 왕! Numpy & Pandas, <strong>PyTorch 및 AI 모델 기초</strong></li>
             </ul>
             <div style="background-color: #fff5f5; border: 2px solid #e74c3c; padding: 15px; border-radius: 10px; margin-top: 15px; color: #c0392b !important;">
-                <strong>🚨 필수 환경 점검! 🚨</strong><br>
-                Python 3.11+, VS Code (및 Python 확장)가 설치되어 있는지 확인하세요!
+                <strong>🚨 필수 환경 점검 🚨</strong><br>
+                Python 3 및 VS Code (Python 확장 포함) 실행 준비 완료!
             </div>
         </div>
 
         <div class="mission-slide" style="border-top-color: #34495e;">
-            <h2>M-01. 필수 도구: Jupyter Notebook</h2>
-            <p>우리가 앞으로 코드를 작성하고 실습할 <strong>Jupyter Notebook</strong>의 핵심 특징입니다.</p>
+            <h2>M-01. 도구: Jupyter Notebook 핵심</h2>
+            <p>Jupyter Notebook은 코드 작성, 실행 결과, 마크다운(설명)을 하나의 문서로 관리하는 데이터 분석의 표준 도구입니다.</p>
+            <h3>🔑 핵심 모드(Mode) 및 단축키</h3>
             <ul>
-                <li><strong>대화형 코딩:</strong> 코드 조각(셀) 단위로 즉시 실행하고 결과를 확인할 수 있어, AI/데이터 분석에 최적화되어 있습니다.</li>
-                <li><strong>문서화:</strong> 코드, 결과(그래프), 설명(마크다운)을 한 문서에 담을 수 있습니다.</li>
-            </ul>
-            <h3>🔑 핵심 단축키 (필수!)</h3>
-            <ul>
-                <li><code>Shift + Enter</code>: 현재 셀 실행 및 다음 셀로 이동</li>
-                <li><code>Esc</code> + <code>A</code>: 현재 셀 위에 셀 추가 / <code>Esc</code> + <code>B</code>: 아래에 셀 추가</li>
-                <li><code>Esc</code> + <code>DD</code>: 현재 셀 삭제</li>
-            </ul>
-        </div>
-
-        <div class="mission-slide" style="border-top-color: #3498db;">
-            <h2>M-02. 파이썬 기초 복습: 변수 및 제어문</h2>
-            <p>프로그램의 흐름을 조종하는 핵심 문법입니다.</p>
-            <ul>
-                <li><strong>자료형 (Data Type):</strong> 정수(int), 실수(float), 문자열(str), 리스트(list)</li>
-                <li><strong>조건문 (Conditionals):</strong> <code>if / else</code>를 사용하여 상황에 맞는 명령을 실행. (예: 드론이 사람을 보면 추적, 아니면 정지)</li>
-                <li><strong>반복문 (Loops):</strong> <code>for</code>를 사용하여 코드를 여러 번 실행.</li>
-            </ul>
-            <pre><code>drones = ["Tello", "DJI", "Parrot"]
-for drone in drones:
-    if drone == "Tello":
-        print("Tello 비행 준비 완료")</code></pre>
-        </div>
-
-        <div class="mission-slide" style="border-top-color: #2ecc71;">
-            <h2>M-03. 오후 실습 핵심: Numpy & Pandas</h2>
-            <p>데이터 처리를 위해 파이썬이 제공하는 강력한 라이브러리입니다.</p>
-            <ul>
-                <li><strong>Numpy (차원 데이터의 왕):</strong>
+                <li><strong>Command Mode (셀 밖 상태 - 파란색 테두리):</strong> 셀 자체를 조작합니다.
                     <ul>
-                        <li>고성능 다차원 배열(행렬)을 생성합니다. (<code>np.array()</code>)</li>
-                        <li>드론 카메라의 <strong>이미지(픽셀)</strong>를 AI가 이해할 수 있는 숫자 행렬로 변환합니다.</li>
+                        <li><code>m</code>, <code>m</code>: 현재 셀을 Markdown(문서)으로 변환</li>
+                        <li><code>y</code>, <code>y</code>: 현재 셀을 Code(코드)로 변환</li>
+                        <li><code>a</code> (위에 셀 추가), <code>b</code> (아래에 셀 추가), <code>dd</code> (셀 삭제)</li>
                     </ul>
                 </li>
-                <li><strong>Pandas (데이터 관리의 엑셀):</strong>
-                    <ul>
-                        <li>행과 열로 구성된 DataFrame(표) 구조로 데이터를 관리합니다.</li>
-                        <li>다양한 실험 결과나 드론 상태 로그를 정리할 때 유용합니다.</li>
-                    </ul>
-                </li>
+                <li><strong>Edit Mode (셀 안 편집 상태 - 초록색 테두리):</strong> 코드를 타이핑합니다.</li>
+                <li><strong>공통 실행:</strong> <code>Shift + Enter</code> (실행 후 다음 셀로 이동)</li>
             </ul>
         </div>
 
-        <div class="mission-slide" style="border-top-color: #e74c3c;">
-            <h2>🔥 M-04. 딥러닝의 핵심 무기: PyTorch</h2>
-            <p>PyTorch(파이토치)는 전 세계의 AI 연구자와 개발자가 가장 많이 사용하는 <strong>딥러닝 프레임워크</strong>입니다.</p>
-            <ul>
-                <li><strong>Tensor (텐서):</strong> PyTorch의 핵심 데이터 구조입니다. Numpy의 배열과 매우 유사한 다차원 행렬입니다.</li>
-                <li><strong>왜 Numpy 대신 Tensor를 쓸까요?</strong>
-                    <ul>
-                        <li>텐서는 컴퓨터의 그래픽 처리 장치인 <strong>GPU</strong>에 올라가서 초고속 병렬 연산이 가능합니다!</li>
-                        <li>인공신경망 역전파(Backpropagation) 시 '자동 미분'을 지원합니다.</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-
-        <div class="mission-slide" style="border-top-color: #e74c3c;">
-            <h2>M-05. PyTorch Tensor 코딩 실습</h2>
-            <p>Jupyter Notebook에서 텐서를 직접 생성해 봅니다.</p>
-            <pre><code>import torch
-
-# 1. 특정 값으로 텐서 생성
-t1 = torch.tensor([[1, 2], [3, 4]])
-print(t1.shape) # 크기 확인: torch.Size([2, 2])
-
-# 2. 0 또는 난수로 채워진 텐서 생성
-t_zeros = torch.zeros(2, 3) # 2행 3열의 0 행렬
-t_rand = torch.rand(2, 2)   # 0~1 사이 난수 행렬
-
-# 3. 텐서를 GPU로 보내기! (매우 중요)
-t_gpu = t1.to('cuda') # CPU 메모리 -> GPU 메모리로 이동</code></pre>
-        </div>
-
-        <div class="mission-slide" style="border-top-color: #e74c3c;">
-            <h2>M-06. PyTorch Tensor 퀴즈</h2>
-            <p class="quiz-question">PyTorch에서 생성한 텐서를 GPU에 할당하여 초고속 연산을 수행하게 만들려고 합니다. 올바른 코드는 무엇일까요?</p>
+        <div class="mission-slide" style="border-top-color: #34495e;">
+            <h2>M-02. Jupyter 모드 퀴즈</h2>
+            <p class="quiz-question">Q. Jupyter Notebook의 Command Mode(셀 밖 상태)에서, 현재 선택된 셀을 일반 글씨를 쓰는 '마크다운(Markdown)' 형식으로 바꾸기 위해 눌러야 하는 단축키는 무엇일까요?</p>
             <div class="quiz-container" id="quiz1">
                 <div class="quiz-choices">
-                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, 'CPU 연산은 기본값이며 GPU보다 느립니다.')">① t.to('cpu')</button>
-                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, '없는 명령어입니다. 다시 생각해보세요.')">② t.send_gpu()</button>
-                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 1, '정답입니다! NVIDIA GPU 연산 플랫폼인 cuda를 지정합니다.')">③ t.to('cuda')</button>
-                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, 'numpy는 GPU 연산을 기본으로 지원하지 않습니다.')">④ t.to('numpy')</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, 'y, y는 셀을 Code(코드) 형식으로 바꿀 때 사용합니다.')">① y, y</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 1, '정답입니다! Markdown의 약자인 m을 두 번 누르면 문서 작성 모드로 변경됩니다. (반대로 코드로 바꿀 때는 y, y)')">② m, m</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, 'd, d는 해당 셀을 삭제(Delete)하는 단축키입니다.')">③ d, d</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, 'Shift + Enter는 셀의 내용을 실행하는 단축키입니다.')">④ Shift + Enter</button>
                 </div>
                 <div class="quiz-feedback" id="feedback1"></div>
             </div>
         </div>
 
-        <div class="mission-slide" style="border-top-color: #9b59b6;">
-            <h2>M-07. 기계학습 모델 맛보기</h2>
-            <p>다음 주부터 배울 AI 모델의 목적은 크게 두 가지로 나뉩니다.</p>
-            <ul>
-                <li><strong>선형 회귀 (Linear Regression):</strong>
-                    <ul>
-                        <li>데이터 간의 상관 관계(직선)를 찾아 <strong>'연속적인 값(숫자)'</strong>을 예측합니다.</li>
-                        <li>예: "배터리 잔량 30%일 때 드론이 비행 가능한 남은 시간은?"</li>
-                        <li><em>Loss Function(손실 함수)</em>을 최소화하도록 <em>경사하강법</em>으로 학습합니다.</li>
-                    </ul>
-                </li>
-                <li><strong>이진 분류 (Binary Classification):</strong>
-                    <ul>
-                        <li>입력된 데이터가 <strong>'A'인지 'B'인지 두 가지 중 하나</strong>로 분류합니다.</li>
-                        <li>예: "카메라에 찍힌 물체가 사람인가, 아닌가?"</li>
-                        <li>최종 결정을 위해 <em>Sigmoid(시그모이드)</em> 함수와 확률을 사용합니다.</li>
-                    </ul>
-                </li>
-            </ul>
+        <div class="mission-slide" style="border-top-color: #3498db;">
+            <h2>M-03. 파이썬 기초: 변수와 메모리 구조</h2>
+            <p>파이썬에서 변수 선언(예: <code>a = [1, 2]</code>)은 단순히 값을 넣는 것이 아닙니다. <strong>해당 리스트가 저장된 '메모리 주소값'을 변수 a에 연결(할당)</strong>하는 것입니다.</p>
+            <pre><code>a = [1, 2, 3, 4, 5]
+b = a          # b에 a의 '메모리 주소'를 복사함 (같은 곳을 바라봄)
+a.append(6)    # a에 6을 추가함
+print(b)       # b를 출력하면 어떻게 될까?</code></pre>
+            <p>위 코드에서 <code>=</code>의 의미는 "같다"가 아니라, 우측 데이터의 <strong>메모리 주소를 좌측 변수에 할당</strong>한다는 의미입니다.</p>
         </div>
 
-        <div class="mission-slide" style="border-top-color: #9b59b6;">
-            <h2>M-08. 기계학습 개념 퀴즈</h2>
-            <p class="quiz-question">카메라에 인식된 이미지가 '안전한 착륙 지점'인지 '장애물'인지 둘 중 하나로 판별하는 AI 드론 모델을 만들려고 합니다. 어떤 모델을 사용해야 할까요?</p>
+        <div class="mission-slide" style="border-top-color: #3498db;">
+            <h2>M-04. 파이썬 메모리 퀴즈</h2>
+            <p class="quiz-question">Q. 앞선 슬라이드의 파이썬 코드를 실행했을 때, <code>print(b)</code>의 결과로 출력되는 값은 무엇일까요?</p>
             <div class="quiz-container" id="quiz2">
                 <div class="quiz-choices">
-                    <button class="quiz-choice" onclick="checkAnswer('quiz2', 0, '선형 회귀는 연속적인 숫자 값을 예측할 때 씁니다.')">① 선형 회귀 (Linear Regression)</button>
-                    <button class="quiz-choice" onclick="checkAnswer('quiz2', 1, '정답입니다! 두 가지 범주 중 하나를 판별할 때는 이진 분류를 사용합니다.')">② 이진 분류 (Binary Classification)</button>
-                    <button class="quiz-choice" onclick="checkAnswer('quiz2', 0, '경사하강법은 모델을 학습시키는 알고리즘의 종류입니다.')">③ 경사하강법 (Gradient Descent)</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz2', 0, 'b = a 를 하는 순간, a와 b는 완전히 동일한 리스트 메모리를 공유하게 됩니다. 따로 떨어지지 않습니다.')">① [1, 2, 3, 4, 5]</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz2', 1, '정답입니다! 변수 a와 b는 동일한 메모리 주소를 가리키고 있습니다. 따라서 a에 6을 추가하면, 같은 주소를 바라보는 b를 출력해도 6이 추가된 리스트가 나옵니다. 이를 방지하려면 b = a.copy() 처럼 명시적으로 값을 복사해야 합니다.')">② [1, 2, 3, 4, 5, 6]</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz2', 0, '파이썬에서는 리스트에 다른 변수를 할당한다고 에러가 발생하지 않습니다.')">③ 에러 발생</button>
                 </div>
                 <div class="quiz-feedback" id="feedback2"></div>
             </div>
         </div>
 
+        <div class="mission-slide" style="border-top-color: #2ecc71;">
+            <h2>M-05. 데이터 처리 핵심: Numpy</h2>
+            <p><strong>Numpy(Numerical Python)</strong>는 방정식, 행렬, 이미지를 코드로 표현하고 고속으로 계산하기 위한 파이썬 필수 라이브러리입니다. (6강) Numpy.pdf]</p>
+            <ul>
+                <li><strong>일반 Python List와의 차이:</strong> Numpy Array는 연속된 메모리에 데이터를 배치하여 <strong>반복문 없이(Vectorization) 매우 빠른 배열 연산</strong>을 지원합니다.</li>
+                <li><strong>행렬의 표현:</strong> 
+                    <ul>
+                        <li><code>[9, 6, 5]</code> ➜ 1차원 벡터</li>
+                        <li><code>[[2, 2, 1], [2, -1, 2]]</code> ➜ 2차원 행렬 (6강) Numpy.pdf]</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mission-slide" style="border-top-color: #2ecc71;">
+            <h2>M-06. Numpy 행렬 구조 퀴즈</h2>
+            <p class="quiz-question">Q. Numpy에서 <code>matrix = np.array([[1, 2, 3], [4, 5, 6]])</code> 코드를 실행하여 2차원 배열을 만들었습니다. <code>matrix.shape</code>를 출력하면 배열의 크기(모양)가 어떻게 나올까요?</p>
+            <div class="quiz-container" id="quiz3">
+                <div class="quiz-choices">
+                    <button class="quiz-choice" onclick="checkAnswer('quiz3', 0, '[1, 2, 3] 이라는 3개짜리 데이터 묶음이 총 2개 있는 형태입니다.')">① (3, 2)</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz3', 1, '정답입니다! 가장 바깥쪽 대괄호 안에 요소(리스트)가 2개 있고, 그 각각의 리스트 안에 데이터가 3개씩 들어있으므로 2행 3열인 (2, 3) 구조가 됩니다.')">② (2, 3)</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz3', 0, '모든 데이터의 개수는 6개지만, shape은 차원별 크기를 튜플로 반환합니다.')">③ (6,)</button>
+                </div>
+                <div class="quiz-feedback" id="feedback3"></div>
+            </div>
+        </div>
+
+        <div class="mission-slide" style="border-top-color: #e67e22;">
+            <h2>M-07. 데이터 관리: Pandas</h2>
+            <p><strong>Pandas</strong>는 Python계의 엑셀로 불리며, 행(Row)과 열(Column)로 이루어진 구조화된 데이터(DataFrame)를 처리합니다. (7-1강) Pandas 1.pdf]</p>
+            <h3>핵심 연산: Groupby (7-2강) Pandas 2.pdf]</h3>
+            <p>데이터 분석 시 가장 많이 쓰이는 <strong>Groupby</strong> 기능은 특정 컬럼을 기준으로 데이터를 묶어 통계를 냅니다. 이 과정은 다음 3단계로 이루어집니다.</p>
+            <ol>
+                <li><strong>Split:</strong> 기준에 따라 데이터를 여러 그룹으로 분할</li>
+                <li><strong>Apply:</strong> 각 그룹별로 합(sum), 평균(mean) 등의 함수 적용</li>
+                <li><strong>Combine:</strong> 적용된 결과를 하나의 표로 다시 결합</li>
+            </ol>
+        </div>
+
+        <div class="mission-slide" style="border-top-color: #e67e22;">
+            <h2>M-08. Pandas Groupby 퀴즈</h2>
+            <p class="quiz-question">Q. Pandas의 <code>Groupby</code> 연산이 내부적으로 데이터를 처리하는 3단계 과정(Split ➔ Apply ➔ Combine) 중, 각 그룹별로 평균이나 합계 같은 통계 함수를 '적용'하는 단계의 이름은 무엇일까요?</p>
+            <div class="quiz-container" id="quiz4">
+                <div class="quiz-choices">
+                    <button class="quiz-choice" onclick="checkAnswer('quiz4', 0, 'Split은 첫 번째 단계로, 조건에 맞게 데이터를 여러 덩어리로 나누는 분할 과정입니다.')">① Split (분할)</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz4', 1, '정답입니다! 나뉘어진 그룹 각각에 sum(), mean() 과 같은 함수를 적용하여 계산하는 단계를 Apply(적용)라고 합니다.')">② Apply (적용)</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz4', 0, 'Combine은 마지막 단계로, 계산된 결과를 다시 하나의 DataFrame으로 합치는 결합 과정입니다.')">③ Combine (결합)</button>
+                </div>
+                <div class="quiz-feedback" id="feedback4"></div>
+            </div>
+        </div>
+
+        <div class="mission-slide" style="border-top-color: #9b59b6;">
+            <h2>M-09. AI 프레임워크: PyTorch 기초</h2>
+            <p>PyTorch는 딥러닝 모델 구축을 위한 핵심 도구입니다. 데이터의 기본 단위로 Numpy의 Array와 유사한 <strong>Tensor(텐서)</strong>를 사용합니다. (1강) PyTorch Intro.pdf]</p>
+            <ul>
+                <li><strong>이미지와 3-D Tensor:</strong> 컴퓨터가 보는 컬러 이미지(RGB)는 3차원 텐서로 표현됩니다. 
+                    <ul>
+                        <li>형태: <code>[채널(R,G,B), 높이(Height), 너비(Width)]</code> 차원 (1강) PyTorch Intro.pdf]</li>
+                    </ul>
+                </li>
+                <li><strong>GPU 할당:</strong> 모델을 빠르게 학습시키려면, 생성된 텐서를 컴퓨터의 그래픽카드(GPU) 메모리로 복사하여 병렬 연산을 수행해야 합니다. (3강) Creating Tensors.pdf]</li>
+            </ul>
+        </div>
+
+        <div class="mission-slide" style="border-top-color: #9b59b6;">
+            <h2>M-10. PyTorch GPU 퀴즈</h2>
+            <p class="quiz-question">Q. PyTorch에서 텐서 <code>b</code>를 생성했습니다. 이 텐서를 NVIDIA GPU 메모리에 올려 초고속 연산을 수행할 수 있도록 변환하는 올바른 코드는 무엇일까요?</p>
+            <div class="quiz-container" id="quiz5">
+                <div class="quiz-choices">
+                    <button class="quiz-choice" onclick="checkAnswer('quiz5', 0, 'CPU로 옮기는 명령어입니다. CPU는 딥러닝 연산에서 GPU보다 훨씬 느립니다.')">① b.to('cpu')</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz5', 1, '정답입니다! .to(\'cuda\') 또는 .cuda()를 사용하면 텐서가 GPU 메모리로 이동하여 딥러닝 병렬 연산을 가속할 수 있습니다. (cuda는 NVIDIA의 GPU 병렬 컴퓨팅 플랫폼 이름입니다.)')">② b.to('cuda')</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz5', 0, 'Numpy array로 변환하는 명령어로는 .numpy()를 사용하지만, 이는 GPU 메모리 이동과는 상관없습니다.')">③ b.to('numpy')</button>
+                </div>
+                <div class="quiz-feedback" id="feedback5"></div>
+            </div>
+        </div>
+
+        <div class="mission-slide" style="border-top-color: #f1c40f;">
+            <h2>M-11. 기계학습 모델 맛보기</h2>
+            <p>드론 AI에 쓰이는 딥러닝 모델의 두 가지 기본 형태입니다.</p>
+            <ul>
+                <li><strong>선형 회귀 (Linear Regression):</strong>
+                    <ul>
+                        <li>목표: 데이터의 선형 관계($y = wx + b$)를 찾아 '연속적인 숫자'를 예측. (7강) Linear Regression1.pdf]</li>
+                        <li>학습 방법: 오차를 나타내는 <strong>손실 함수(Loss Function, 예: MSE)</strong>의 값이 최소가 되도록 가중치($w$)와 편향($b$)을 경사하강법으로 수정. (7강) Linear Regression1.pdf]</li>
+                    </ul>
+                </li>
+                <li><strong>이진 분류 (Binary Classification):</strong>
+                    <ul>
+                        <li>목표: 데이터가 A인지 B인지(1 또는 0) '두 가지 중 하나'로 분류. (9강) Binary Classification1.pdf]</li>
+                        <li>특징: 모델의 마지막에 <strong>Sigmoid(시그모이드) 함수</strong>를 통과시켜, 결과값을 0~1 사이의 확률로 변환함. (9강) Binary Classification1.pdf]</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mission-slide" style="border-top-color: #f1c40f;">
+            <h2>M-12. 기계학습 개념 퀴즈</h2>
+            <p class="quiz-question">Q. 드론의 카메라에 어떤 물체가 찍혔습니다. 이 모델은 중간 계산된 결과값(z)을 0과 1 사이의 확률 값으로 매핑하여, "이 물체가 사람인지(1) 아닌지(0)"를 최종 판별합니다. 이때 결과값을 0~1로 압축하기 위해 사용하는 활성화 함수는 무엇일까요?</p>
+            <div class="quiz-container" id="quiz6">
+                <div class="quiz-choices">
+                    <button class="quiz-choice" onclick="checkAnswer('quiz6', 0, '손실 함수는 모델의 예측값과 실제 정답의 차이(오차)를 계산하는 함수입니다.')">① Loss Function (손실 함수)</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz6', 0, '경사하강법은 손실 함수의 값을 줄이기 위해 파라미터(w, b)를 업데이트하는 학습 알고리즘입니다.')">② Gradient Descent (경사하강법)</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz6', 1, '정답입니다! 이진 분류 모델(Binary Classification)에서는 선형 계층을 통과한 출력값을 Sigmoid(시그모이드) 함수에 통과시켜 0~1 사이의 확률값으로 변환하고, 이를 바탕으로 최종 클래스를 결정합니다.')">③ Sigmoid (시그모이드 함수)</button>
+                </div>
+                <div class="quiz-feedback" id="feedback6"></div>
+            </div>
+        </div>
+
         <div class="mission-slide" style="border-top-color: #2c3e50; text-align: center;">
             <h2>마무리 & 다음 미션</h2>
-            <p style="font-size: 1.1rem; margin-top: 20px;">오늘 우리는 데이터 처리(Numpy)부터 딥러닝 무기(PyTorch)까지 장착했습니다!</p>
-            <p>배운 코드를 직접 Jupyter Notebook에 복습해 보는 것이 가장 중요합니다.</p>
+            <p style="font-size: 1.15rem; margin-top: 20px;">오늘 파이썬 기초부터 딥러닝 텐서(Tensor)까지 무사히 장착했습니다!</p>
+            <p>Jupyter Notebook에서 꼭 배운 코드를 직접 타이핑하며 복습해 보세요.</p>
             <div class="highlight" style="padding: 15px; margin-top: 20px;">
                 <h3>🚀 4/18(토) NEXT MISSION</h3>
-                <ul style="text-align: left; font-size: 1rem;">
+                <ul style="text-align: left; font-size: 1.05rem;">
                     <li><strong>09:00 ~ 13:00:</strong> 카메라가 이미지를 어떻게 인식할까? <strong>CNN 이론</strong></li>
                     <li><strong>14:00 ~ 18:00:</strong> PyTorch를 활용한 <strong>객체인식 프로그래밍 실습</strong></li>
                 </ul>
                 <div style="color: #c0392b; font-weight:bold; margin-top: 10px;">
-                    ※ 오늘 배운 Tensor 변환 개념이 다음 실습의 핵심입니다.
+                    ※ 오늘 배운 Tensor와 Numpy 개념이 다음 실습의 뼈대가 됩니다.
                 </div>
             </div>
             <p style="margin-top: 30px;">
@@ -377,11 +429,13 @@ t_gpu = t1.to('cuda') # CPU 메모리 -> GPU 메모리로 이동</code></pre>
             }
         });
 
+        // 퀴즈 정답 확인 및 상세 풀이 노출 함수
         function checkAnswer(quizId, isCorrect, feedbackText) {
             const quizContainer = document.getElementById(quizId);
             const feedbackDiv = quizContainer.querySelector('.quiz-feedback');
             const choices = quizContainer.querySelectorAll('.quiz-choice');
             
+            // 한 번 클릭하면 다른 버튼들 비활성화
             choices.forEach(choice => {
                 choice.disabled = true;
                 choice.classList.remove('correct', 'wrong');
@@ -390,14 +444,21 @@ t_gpu = t1.to('cuda') # CPU 메모리 -> GPU 메모리로 이동</code></pre>
             const eventTarget = event.currentTarget;
             if (isCorrect) {
                 eventTarget.classList.add('correct');
-                feedbackDiv.style.color = '#27ae60';
+                feedbackDiv.style.borderLeftColor = '#27ae60';
+                feedbackDiv.innerHTML = "<span style='color: #27ae60; font-size: 1.1rem;'>✅ <b>정답입니다!</b></span><br><br><span style='color: #333; font-weight: normal;'>" + feedbackText + "</span>";
             } else {
                 eventTarget.classList.add('wrong');
-                feedbackDiv.style.color = '#c0392b';
+                feedbackDiv.style.borderLeftColor = '#c0392b';
+                feedbackDiv.innerHTML = "<span style='color: #c0392b; font-size: 1.1rem;'>❌ <b>오답입니다.</b></span><br><br><span style='color: #333; font-weight: normal;'>" + feedbackText + "</span>";
             }
 
-            feedbackDiv.textContent = feedbackText;
+            // 부드럽게 풀이(피드백) 영역 등장
             feedbackDiv.style.display = 'block';
+            feedbackDiv.style.opacity = '0';
+            setTimeout(() => {
+                feedbackDiv.style.transition = 'opacity 0.5s';
+                feedbackDiv.style.opacity = '1';
+            }, 10);
         }
 
         createDots();
