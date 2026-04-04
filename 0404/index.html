@@ -203,7 +203,7 @@
             </ul>
             <pre><code>x = 10
 y = "3.14"
-my_list = [1, 2, 3, 4]
+my_list =
 print(my_list) # 출력</code></pre>
         </div>
 
@@ -215,7 +215,7 @@ print(my_list) # 출력</code></pre>
                 <li><strong>반복문 (Loops):</strong> <code>for</code> 또는 <code>while</code>을 사용하여 코드를 여러 번 실행합니다. (예: 리스트의 모든 데이터 출력)</li>
             </ul>
             <pre><code># 반복문 예시
-drones = ["Tello", "Mavic", "Spark"]
+drones =
 for drone in drones:
     if drone == "Tello":
         print("Tello 비행 준비 완료")
@@ -262,12 +262,12 @@ x = data</code></pre>
             <pre><code>import numpy as np # 관례적인 이름
 
 # 1. 리스트를 Numpy 배열로 변환
-vec = np.array([1, 2, 3, 4])
+vec = np.array()
 print("1차원 배열(vec):", vec)
 print("배열 크기(shape):", vec.shape) # (4,) - 4개의 데이터
 
 # 2. 2차원 배열(행렬) 생성 (이미지와 유사)
-matrix = np.array([[1, 2, 3], [4, 5, 6]])
+matrix = np.array([,])
 print("2차원 배열(matrix):\n", matrix)
 print("배열 크기(shape):", matrix.shape) # (2, 3) - 2행 3열</code></pre>
         </div>
@@ -275,7 +275,7 @@ print("배열 크기(shape):", matrix.shape) # (2, 3) - 2행 3열</code></pre>
         <div class="mission-slide" style="border-top-color: #2ecc71;">
             <h2>M-08. Numpy Shape 예측 퀴즈</h2>
             <p>아래 Numpy 배열 <code>arr</code>의 크기(shape)는 무엇일까요?</p>
-            <pre><code>arr = np.array([[1, 2], [3, 4]])</code></pre>
+            <pre><code>arr = np.array([],]])</code></pre>
             <div class="quiz-container" id="quiz3">
                 <div class="quiz-choices">
                     <button class="quiz-choice" onclick="checkAnswer('quiz3', 0, '2차원 안에 또 리스트가 있습니다. 다시 생각해보세요.')">① (4,)</button>
@@ -310,9 +310,9 @@ print("배열 크기(shape):", matrix.shape) # (2, 3) - 2행 3열</code></pre>
 
 # 딕셔너리로 표 데이터 정의
 data = {
-    '드론이름': ['Tello', 'Mavic', 'Spark'],
-    '배터리(%)': [85, 92, 78],
-    '상태': ['비행중', '대기', '충전중']
+    '드론이름':,
+    '배터리(%)':,
+    '상태':
 }
 
 # DataFrame 생성
@@ -393,7 +393,7 @@ display(df) # Jupyter 환경에서는 print보다 display가 예쁩니다.</code
         // 슬라이드 쇼 이동
         function showSlide(index) {
             slides.forEach(slide => slide.classList.remove('active'));
-            slides[index].classList.add('active');
+            slides.classList.add('active');
             
             // 컨트롤러 상태 업데이트
             prevBtn.disabled = (index === 0);
