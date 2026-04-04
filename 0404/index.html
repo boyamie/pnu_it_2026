@@ -6,21 +6,21 @@
     <title>4월 4일: 파이썬 기계학습 기초 및 필수 도구</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
     <style>
-        /* 기본 색상 정의 (강력하게 고정) */
+        /* 기본 색상 정의 (다크모드 강제 무시 및 강력 고정) */
         :root {
-            --bg-body: #f4f6f9; /* 배경: 연회색 */
-            --bg-slide: #ffffff; /* 슬라이드 배경: 흰색 */
-            --text-main: #222222; /* 일반 글씨: 진회색 (거의 검정) */
-            --text-header: #333333; /* 제목 글씨: 진회색 */
-            --color-primary: #1a73e8; /* 강조 색상: 파란색 */
-            --color-code-bg: #2c3e50; /* 코드 배경: 짙은 남색 */
-            --color-code-text: #ecf0f1; /* 코드 글씨: 연회색 (거의 흰색) */
+            --bg-body: #f4f6f9; 
+            --bg-slide: #ffffff; 
+            --text-main: #222222; 
+            --text-header: #333333; 
+            --color-primary: #1a73e8; 
+            --color-code-bg: #2c3e50; 
+            --color-code-text: #ecf0f1; 
         }
 
         body {
             font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
-            background-color: var(--bg-body) !important; /* 배경색 강제 고정 */
-            color: var(--text-main) !important; /* 글씨색 강제 고정 */
+            background-color: var(--bg-body) !important;
+            color: var(--text-main) !important;
             padding: 20px;
             max-width: 800px;
             margin: 0 auto;
@@ -31,9 +31,8 @@
             font-weight: 700;
         }
 
-        /* 메인 콘텐츠 스타일 */
         p, ul, li {
-            color: var(--text-main) !important; /* 본문 글씨색 강력 고정 */
+            color: var(--text-main) !important;
             font-size: 1rem;
             line-height: 1.7;
             margin-top: 0;
@@ -44,15 +43,14 @@
         h2 { font-size: 1.3rem; color: var(--text-header) !important; margin-top: 0; font-weight: 800; border-left: 5px solid var(--color-primary); padding-left: 10px; margin-bottom: 15px; }
         h3 { font-size: 1.1rem; color: var(--color-primary) !important; font-weight: 800; margin-top: 15px; margin-bottom: 8px; }
         
-        /* 슬라이드 카드 스타일 */
         .mission-slide {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-slide) !important; /* 슬라이드 배경 강제 고정 */
-            color: var(--text-main) !important; /* 슬라이드 내 글씨색 강제 고정 */
+            background-color: var(--bg-slide) !important;
+            color: var(--text-main) !important;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
@@ -74,7 +72,6 @@
             pointer-events: auto;
         }
         
-        /* 상단 및 하단 컨트롤 바 */
         .top-bar, .control-bar {
             display: flex;
             justify-content: space-between;
@@ -95,12 +92,10 @@
         .back-btn:hover { background-color: #d8dadf; }
         .date { font-size: 1rem; color: #555555; }
 
-        /* 진행도 점 표시 */
         .progress-dots { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
         .dot { width: 10px; height: 10px; background-color: #e4e6eb; border-radius: 50%; transition: all 0.3s; }
         .dot.active { background-color: var(--color-primary); width: 25px; border-radius: 5px; }
 
-        /* 슬라이드 이동 버튼 */
         .nav-btn {
             background-color: var(--color-primary);
             color: #ffffff;
@@ -115,19 +110,16 @@
         .nav-btn:hover { background-color: #155bb5; }
         .nav-btn:disabled { background-color: #e4e6eb; color: #999999; cursor: not-allowed; }
         
-        /* 코드 블록 스타일 (다크 모드 유지) */
-        code { background-color: #f1f3f5; padding: 3px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.95rem; font-weight: bold; }
+        code { background-color: #f1f3f5; padding: 3px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.95rem; font-weight: bold; color: #d63031; }
         pre { background-color: var(--color-code-bg); color: var(--color-code-text); padding: 15px; border-radius: 8px; overflow-x: auto; margin-top: 10px; margin-bottom: 15px; text-align: left; font-family: 'Consolas', monospace; }
         pre code { background-color: transparent; color: inherit; padding: 0; font-size: 1rem; }
 
-        /* 슬라이드 컨테이너 */
         .slide-container {
             flex-grow: 1;
             position: relative;
             perspective: 1000px;
         }
 
-        /* 퀴즈 스타일 (강력 고정) */
         .quiz-container { background-color: #f8fbff; padding: 20px; border-radius: 10px; border: 2px dashed var(--color-primary); margin-top: 15px; color: var(--text-main) !important; }
         .quiz-question { font-size: 1.1rem; color: var(--text-header) !important; margin-bottom: 15px; text-align: left;}
         .quiz-choices { display: flex; flex-direction: column; gap: 10px; }
@@ -148,7 +140,6 @@
         .quiz-choice.wrong { background-color: #e74c3c !important; color: #ffffff !important; border-color: #c0392b !important; }
         .quiz-feedback { margin-top: 15px; font-size: 1rem; font-weight: bold; text-align: center; display: none;}
 
-        /* 강조 박스 (강력 고정) */
         .highlight {
             background-color: #fff3cd !important;
             color: #856404 !important;
@@ -201,13 +192,13 @@
 
         <div class="mission-slide" style="border-top-color: #34495e;">
             <h2>M-02. Jupyter 핵심 단축키 퀴즈</h2>
-            <p>Jupyter Notebook에서 코드를 작성한 후, 결과를 확인하기 위해 사용해야 하는 가장 필수적인 단축키는 무엇일까요?</p>
+            <p class="quiz-question">Jupyter Notebook에서 코드를 작성한 후, 결과를 확인하기 위해 사용해야 하는 가장 필수적인 단축키는 무엇일까요?</p>
             <div class="quiz-container" id="quiz1">
                 <div class="quiz-choices">
-                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, '정답입니다!')">① Alt + Enter</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, '정답이 아닙니다. 다시 생각해보세요.')">① Alt + Enter</button>
                     <button class="quiz-choice" onclick="checkAnswer('quiz1', 1, '정답입니다! 코드 실행의 기본입니다.')">② Shift + Enter</button>
-                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, '다시 생각해보세요.')">③ Ctrl + C</button>
-                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, '다시 생각해보세요.')">④ Esc + R</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, '정답이 아닙니다. 다시 생각해보세요.')">③ Ctrl + C</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz1', 0, '정답이 아닙니다. 다시 생각해보세요.')">④ Esc + R</button>
                 </div>
                 <div class="quiz-feedback" id="feedback1"></div>
             </div>
@@ -223,14 +214,14 @@
                         <li><code>int</code>: 정수 (<code>10</code>, <code>-5</code>)</li>
                         <li><code>float</code>: 실수 (<code>3.14</code>)</li>
                         <li><code>str</code>: 문자열 (<code>"Drone"</code>)</li>
-                        <li><code>list</code>: 여러 데이터를 순서대로 저장 (<code></code>)</li>
+                        <li><code>list</code>: 여러 데이터를 순서대로 저장</li>
                     </ul>
                 </li>
             </ul>
             <pre><code>x = 10
 y = "3.14"
-my_list =
-print(my_list) # 출력</code></pre>
+my_list = [10, "3.14", "AI"]
+print(my_list) # [10, '3.14', 'AI'] 출력</code></pre>
         </div>
 
         <div class="mission-slide" style="border-top-color: #3498db;">
@@ -241,7 +232,7 @@ print(my_list) # 출력</code></pre>
                 <li><strong>반복문 (Loops):</strong> <code>for</code> 또는 <code>while</code>을 사용하여 코드를 여러 번 실행합니다. (예: 리스트의 모든 데이터 출력)</li>
             </ul>
             <pre><code># 반복문 예시
-drones =
+drones = ["Tello", "Mavic", "Spark"]
 for drone in drones:
     if drone == "Tello":
         print("Tello 비행 준비 완료")
@@ -251,14 +242,14 @@ for drone in drones:
 
         <div class="mission-slide" style="border-top-color: #3498db;">
             <h2>M-05. 자료형 예측 퀴즈</h2>
-            <p>아래 파이썬 코드 실행 후, 변수 <code>x</code>의 자료형(type)은 무엇일까요?</p>
-            <pre><code>data =
-x = data</code></pre>
+            <p class="quiz-question">아래 파이썬 코드 실행 후, 변수 <code>x</code>의 자료형(type)은 무엇일까요?</p>
+            <pre><code>data = [1, 2, "AI"]
+x = data[2]</code></pre>
             <div class="quiz-container" id="quiz2">
                 <div class="quiz-choices">
-                    <button class="quiz-choice" onclick="checkAnswer('quiz2', 0, 'data는 "AI"입니다. 다시 생각해보세요.')">① int (정수)</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz2', 0, 'data[2]는 "AI"입니다. 다시 생각해보세요.')">① int (정수)</button>
                     <button class="quiz-choice" onclick="checkAnswer('quiz2', 1, '정답입니다! "AI"는 문자열입니다.')">② str (문자열)</button>
-                    <button class="quiz-choice" onclick="checkAnswer('quiz2', 0, 'data 자체는 list지만 data는? 다시 생각해보세요.')">③ list (리스트)</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz2', 0, 'data 자체는 list지만 data[2]는? 다시 생각해보세요.')">③ list (리스트)</button>
                     <button class="quiz-choice" onclick="checkAnswer('quiz2', 0, '따옴표("")로 감싸져 있습니다. 다시 생각해보세요.')">④ float (실수)</button>
                 </div>
                 <div class="quiz-feedback" id="feedback2"></div>
@@ -267,18 +258,18 @@ x = data</code></pre>
 
         <div class="mission-slide" style="border-top-color: #2ecc71;">
             <h2>M-06. 오후 실습 핵심: Numpy (차원 데이터의 왕)</h2>
-            <p>기계학습과 이미지 처리에서 **이미지 데이터를 숫자 행렬(2차원 배열)**로 바꾸어 고속 계산하기 위해 필수적인 라이브러리입니다. (6강) Numpy.pdf`]</p>
+            <p>기계학습과 이미지 처리에서 **이미지 데이터를 숫자 행렬(2차원 배열)**로 바꾸어 고속 계산하기 위해 필수적인 라이브러리입니다.</p>
             <ul>
                 <li><strong>핵심 특징:</strong>
                     <ul>
-                        <li>고성능 다차원 배열(N-dimensional array)을 제공합니다. (예: 1차원 벡터, 2차원 행렬) (6강) Numpy.pdf`]</li>
-                        <li>반복문 없이 배열 단위의 빠른 연산(Vetorization)이 가능합니다. (6강) Numpy.pdf`]</li>
+                        <li>고성능 다차원 배열(N-dimensional array)을 제공합니다. (예: 1차원 벡터, 2차원 행렬)</li>
+                        <li>반복문 없이 배열 단위의 빠른 연산(Vectorization)이 가능합니다.</li>
                     </ul>
                 </li>
             </ul>
             <div class="highlight" style="background-color: #ffeaa7; margin-top: 15px;">
                 <strong>🚨 중요! 🚨</strong><br>
-                드론 카메라로 찍은 이미지는 결국 <strong>Numpy의 2차원 또는 3차원 숫자 행렬</strong>로 변환되어 AI 모델에 전달됩니다. (Act 1.2 "이미지 인식"의 기초)
+                드론 카메라로 찍은 이미지는 결국 <strong>Numpy의 2차원 또는 3차원 숫자 행렬</strong>로 변환되어 AI 모델에 전달됩니다.
             </div>
         </div>
 
@@ -288,26 +279,26 @@ x = data</code></pre>
             <pre><code>import numpy as np # 관례적인 이름
 
 # 1. 리스트를 Numpy 배열로 변환
-vec = np.array()
+vec = np.array([1, 2, 3, 4])
 print("1차원 배열(vec):", vec)
 print("배열 크기(shape):", vec.shape) # (4,) - 4개의 데이터
 
 # 2. 2차원 배열(행렬) 생성 (이미지와 유사)
-matrix = np.array([,])
+matrix = np.array([[1, 2, 3], [4, 5, 6]])
 print("2차원 배열(matrix):\n", matrix)
 print("배열 크기(shape):", matrix.shape) # (2, 3) - 2행 3열</code></pre>
         </div>
 
         <div class="mission-slide" style="border-top-color: #2ecc71;">
             <h2>M-08. Numpy Shape 예측 퀴즈</h2>
-            <p>아래 Numpy 배열 <code>arr</code>의 크기(shape)는 무엇일까요?</p>
-            <pre><code>arr = np.array([],]])</code></pre>
+            <p class="quiz-question">아래 Numpy 배열 <code>arr</code>의 크기(shape)는 무엇일까요?</p>
+            <pre><code>arr = np.array([[1, 2], [3, 4]])</code></pre>
             <div class="quiz-container" id="quiz3">
                 <div class="quiz-choices">
                     <button class="quiz-choice" onclick="checkAnswer('quiz3', 0, '2차원 안에 또 리스트가 있습니다. 다시 생각해보세요.')">① (4,)</button>
                     <button class="quiz-choice" onclick="checkAnswer('quiz3', 1, '정답입니다! 2개씩 2묶음, 즉 2행 2열입니다.')">② (2, 2)</button>
                     <button class="quiz-choice" onclick="checkAnswer('quiz3', 0, '(행, 열)의 순서입니다. 다시 생각해보세요.')">③ (1, 4)</button>
-                    <button class="quiz-choice" onclick="checkAnswer('quiz3', 0, '괄호]가 두 개 겹쳐져 있습니다. 다시 생각해보세요.')">④ (2,)</button>
+                    <button class="quiz-choice" onclick="checkAnswer('quiz3', 0, '괄호가 두 개 겹쳐져 있습니다. 다시 생각해보세요.')">④ (2,)</button>
                 </div>
                 <div class="quiz-feedback" id="feedback3"></div>
             </div>
@@ -315,17 +306,17 @@ print("배열 크기(shape):", matrix.shape) # (2, 3) - 2행 3열</code></pre>
 
         <div class="mission-slide" style="border-top-color: #e67e22;">
             <h2>M-09. 오후 실습 핵심: Pandas (데이터 관리의 엑셀)</h2>
-            <p>주로 텍스트 데이터나 표(Table) 데이터를 효율적으로 관리하고 분석하기 위해 필수적인 라이브러리입니다. (드론 미션 로그, 아이디어 목록 정리 등에 활용) (7-1강) Pandas 1.pdf`]</p>
+            <p>주로 텍스트 데이터나 표(Table) 데이터를 효율적으로 관리하고 분석하기 위해 필수적인 라이브러리입니다.</p>
             <ul>
                 <li><strong>핵심 자료구조: DataFrame</strong>
                     <ul>
-                        <li>엑셀의 워크시트처럼, **행(Row)과 열(Column)**로 이루어진 표 형태의 데이터 구조입니다. (7-1강) Pandas 1.pdf`]</li>
-                        <li>다양한 자료형(int, str, float 등)을 한 표에 저장할 수 있습니다. (7-1강) Pandas 1.pdf`]</li>
+                        <li>엑셀의 워크시트처럼, **행(Row)과 열(Column)**로 이루어진 표 형태의 데이터 구조입니다.</li>
+                        <li>다양한 자료형(int, str, float 등)을 한 표에 저장할 수 있습니다.</li>
                     </ul>
                 </li>
             </ul>
             <div class="highlight" style="margin-top: 15px;">
-                드론 프로젝트에서 **주제 해결을 위한 구현(Act 2)** 단계에서 수집한 데이터나 실험 결과를 정리할 때 필수적으로 쓰입니다.
+                드론 프로젝트에서 수집한 데이터나 실험 결과를 정리할 때 필수적으로 쓰입니다.
             </div>
         </div>
 
@@ -336,9 +327,9 @@ print("배열 크기(shape):", matrix.shape) # (2, 3) - 2행 3열</code></pre>
 
 # 딕셔너리로 표 데이터 정의
 data = {
-    '드론이름':,
-    '배터리(%)':,
-    '상태':
+    '드론이름': ['Tello', 'Mavic', 'Spark'],
+    '배터리(%)': [85, 92, 78],
+    '상태': ['비행중', '대기', '충전중']
 }
 
 # DataFrame 생성
@@ -351,8 +342,8 @@ display(df) # Jupyter 환경에서는 print보다 display가 예쁩니다.</code
 
         <div class="mission-slide" style="border-top-color: #f1c40f;">
             <h2>M-11. AI 드론의 확률적 사고</h2>
-            <p>나중에 배울 **베이즈 통계학** 개념의 핵심입니다. 드론의 사물 인식 AI는 '확률'을 사용하여 사물을 판단합니다. (8강) 베이즈 통계학 맛보기.pdf`]</p>
-            <p>드론 카메라가 물체를 보고 <strong>"사람일 확률 95%, 원숭이일 확률 5%"</strong>라고 판단했습니다. AI는 이 물체를 무엇이라고 최종 결정할까요?</p>
+            <p>나중에 배울 **베이즈 통계학** 개념의 핵심입니다. 드론의 사물 인식 AI는 '확률'을 사용하여 사물을 판단합니다.</p>
+            <p class="quiz-question">드론 카메라가 물체를 보고 <strong>"사람일 확률 95%, 원숭이일 확률 5%"</strong>라고 판단했습니다. AI는 이 물체를 무엇이라고 최종 결정할까요?</p>
             <div class="quiz-container" id="quiz4">
                 <div class="quiz-choices">
                     <button class="quiz-choice" onclick="checkAnswer('quiz4', 1, '정답입니다! AI는 가장 확률이 높은 쪽으로 판단합니다.')">① 사람</button>
@@ -397,7 +388,6 @@ display(df) # Jupyter 환경에서는 print보다 display가 예쁩니다.</code
         const progressDots = document.getElementById('progress-dots');
         let currentSlide = 0;
 
-        // 진행도 점 생성
         function createDots() {
             for (let i = 0; i < slides.length; i++) {
                 const dot = document.createElement('div');
@@ -407,7 +397,6 @@ display(df) # Jupyter 환경에서는 print보다 display가 예쁩니다.</code
             }
         }
 
-        // 진행도 점 업데이트
         function updateDots() {
             const dots = document.querySelectorAll('.dot');
             dots.forEach((dot, index) => {
@@ -416,25 +405,24 @@ display(df) # Jupyter 환경에서는 print보다 display가 예쁩니다.</code
             });
         }
 
-        // 슬라이드 쇼 이동 함수 (오타 수정)
+        // 여기에 있던 치명적인 오타(slides)를 완벽히 수정했습니다!
         function showSlide(index) {
             slides.forEach(slide => slide.classList.remove('active'));
-            slides.classList.add('active');
+            slides[index].classList.add('active'); 
             
-            // 컨트롤러 상태 업데이트
-            prevBtn.disabled = index === 0;
-            nextBtn.disabled = index === slides.length - 1;
+            prevBtn.disabled = (index === 0);
+            nextBtn.disabled = (index === slides.length - 1);
             
             updateDots();
         }
 
-        // 이벤트 리스너
         prevBtn.addEventListener('click', () => { 
             if (currentSlide > 0) {
                 currentSlide--; 
                 showSlide(currentSlide); 
             }
         });
+        
         nextBtn.addEventListener('click', () => { 
             if (currentSlide < slides.length - 1) {
                 currentSlide++; 
@@ -442,36 +430,29 @@ display(df) # Jupyter 환경에서는 print보다 display가 예쁩니다.</code
             }
         });
 
-        // 퀴즈 정답 확인 함수
         function checkAnswer(quizId, isCorrect, feedbackText) {
             const quizContainer = document.getElementById(quizId);
             const feedbackDiv = quizContainer.querySelector('.quiz-feedback');
             const choices = quizContainer.querySelectorAll('.quiz-choice');
             
-            // 모든 선택지 비활성화 및 기존 스타일 초기화
             choices.forEach(choice => {
                 choice.disabled = true;
                 choice.classList.remove('correct', 'wrong');
             });
 
-            // 클릭한 선택지 스타일 적용
             const eventTarget = event.currentTarget;
             if (isCorrect) {
                 eventTarget.classList.add('correct');
                 feedbackDiv.style.color = '#27ae60';
-                nextBtn.disabled = false; // 정답을 맞추면 '다음' 버튼 활성화 (선택 사항)
             } else {
                 eventTarget.classList.add('wrong');
                 feedbackDiv.style.color = '#c0392b';
-                // 오답을 고르면 '다시시도' 버튼을 노출하거나 그냥 둠. 여기서는 그냥 스타일만 바꿈.
             }
 
-            // 피드백 텍스트 표시
             feedbackDiv.textContent = feedbackText;
             feedbackDiv.style.display = 'block';
         }
 
-        // 초기화
         createDots();
     </script>
 
