@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4월 25일: YOLO & 드론 제어 실습 퀴즈</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+    <style>
+        /* 기본 색상 및 스타일 강제 고정 (다크모드 무시) */
+        :root {
+            --bg-body: #f4f6f9; 
+            --bg-card: #ffffff; 
+            --text-main: #222222; 
+            --color-primary: #1a73e8; 
+            --color-success: #27ae60;
+            --color-error: #c0392b;
+            --color-code: #d63031;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+            background-color: var(--bg-body) !important;
+            color: var(--text-main) !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .quiz-card {
+            background-color: var(--bg-card) !important;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            max-width: 750px;
+            width: 100%;
+            border-top: 8px solid var(--color-primary);
+            position: relative;
+        }
+
+        .title {
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            height: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--color-primary);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            word-break: keep-all;
+            color: #333 !important;
+        }
+
+        /* 인라인 코드 스타일 */
+        code {
+            background-color: #f1f3f5;
+            padding: 3px 7px;
+            border-radius: 6px;
+            font-family: 'Consolas', monospace;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--color-code);
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background-color: #f8f9fa;
+            border: 2px solid #e4e6eb;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: #eef2f5;
+            border-color: #cbd3da;
+            transform: translateX(5px);
+        }
+
+        .option-btn.correct {
+            background-color: var(--color-success) !important;
+            color: white !important;
+            border-color: var(--color-success) !important;
+        }
+
+        .option-btn.wrong {
+            background-color: var(--color-error) !important;
+            color: white !important;
+            border-color: var(--color-error) !important;
+        }
+
+        .feedback-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            display: none;
+            line-height: 1.6;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .feedback-title {
+            font-size: 1.15rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .next-btn {
+            margin-top: 20px;
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            border-radius: 12px;
+            cursor: pointer;
+            display: none;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .next-btn:hover {
+            background-color: #155bb5;
+        }
+
+        #result-screen {
+            display: none;
+            text-align: center;
+        }
+
+        .score-text {
+            font-size: 3rem;
+            color: var(--color-primary);
+            font-weight: 900;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-card" id="quiz-screen">
+        <div class="title">🚁 YOLO & 드론 제어 실습 퀴즈</div>
+        <div class="subtitle">코드가 실행되는 동안 가볍게 10문제를 풀어보세요!</div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+
+        <div class="question-text" id="question">질문이 여기에 표시됩니다.</div>
+        
+        <div class="options-container" id="options">
+            </div>
+
+        <div class="feedback-box" id="feedback"></div>
+        
+        <button class="next-btn" id="next-btn" onclick="nextQuestion()">다음 문제 ▶</button>
+    </div>
+
+    <div class="quiz-card" id="result-screen">
+        <div class="title">🎉 실습 퀴즈 완료!</div>
+        <div class="score-text" id="score">10 / 10</div>
+        <div class="subtitle">이제 Jupyter Notebook에서 실습 코드를 마저 작성해봅시다!</div>
+        <button class="next-btn" style="display: block; margin-top: 30px;" onclick="location.reload()">다시 풀어보기 🔄</button>
+    </div>
+
+    <script>
+        // 퀴즈 데이터
+        const quizData = [
+            {
+                question: "1. YOLOv8 모델을 초기화할 때, <code>model = YOLO('_________')</code>에서 가장 가볍고 빠른 nano 모델을 불러오기 위해 빈칸에 들어갈 파일명은?",
+                options: ["① yolov8n.pt", "② yolov8_nano.h5", "③ yolo_fast.pt", "④ model_n.weights"],
+                correct: 0,
+                explanation: "ultralytics의 YOLOv8 nano 모델 가중치 파일명은 <code>yolov8n.pt</code>입니다. (v8 버전의 nano를 의미하는 알파벳 'n'과 파이토치 확장자 '.pt' 사용)"
+            },
+            {
+                question: "2. 탐지된 객체의 바운딩 박스(Bounding Box) 좌표를 가져옵니다. <code>x1, y1, x2, y2 = map(int, box._____[0])</code>에서 빈칸에 들어갈 속성은?",
+                options: ["① coord", "② xyxy", "③ bbox_points", "④ xywh"],
+                correct: 1,
+                explanation: "<code>box.xyxy</code>는 [xmin, ymin, xmax, ymax] 형태의 바운딩 박스 좌상단 및 우하단 모서리 좌표를 반환하는 YOLOv8의 기본 속성입니다."
+            },
+            {
+                question: "3. 드론이 목표물을 중앙에 맞추기 위해 객체의 중심점 x좌표(cx)를 계산해야 합니다. 좌상단이 <code>x1</code>, 우하단이 <code>x2</code>일 때 올바른 파이썬 코드는?",
+                options: ["① cx = int((x2 - x1) / 2)", "② cx = x1 + x2 / 2", "③ cx = int(x1 * x2 / 2)", "④ cx = int((x1 + x2) / 2)"],
+                correct: 3,
+                explanation: "두 x좌표를 더한 뒤 2로 나누는 것이 중간(평균) 지점을 구하는 공식입니다. 화면 픽셀 좌표로 쓰기 위해 <code>int()</code> 변환을 해줍니다."
+            },
+            {
+                question: "4. 객체 주변에 사각형을 그리는 <code>cv2.rectangle(frame, pt1, pt2, (0, 255, 0), 2)</code>에서 색상 <code>(0, 255, 0)</code>이 초록색인 이유는?",
+                options: ["① RGB 공간을 쓰기 때문이다", "② HSV 공간을 쓰기 때문이다", "③ BGR 공간을 쓰기 때문이다", "④ CMYK 공간을 쓰기 때문이다"],
+                correct: 2,
+                explanation: "OpenCV 라이브러리는 전통적으로 영상 처리에서 Red-Green-Blue(RGB) 순서가 아닌 <strong>BGR (Blue, Green, Red)</strong> 채널 순서를 기본으로 사용합니다."
+            },
+            {
+                question: "5. AI 모델이 탐지한 객체에 대한 '신뢰도(정확도 확률)'를 나타내는 값을 추출하는 코드는 <code>box._____[0]</code> 입니다. 빈칸에 들어갈 속성은?",
+                options: ["① conf", "② acc", "③ score", "④ prob"],
+                correct: 0,
+                explanation: "YOLOv8에서 Confidence Score(신뢰도 혹은 확신도)는 <code>box.conf</code> 속성을 통해 추출할 수 있습니다."
+            },
+            {
+                question: "6. 탐지된 객체의 번호를 얻어 <code>cls = int(box.cls[0])</code> 변수에 넣었습니다. 이를 문자열 라벨(예: 'person')로 변환하는 코드는?",
+                options: ["① classNames.get(cls)", "② classNames.find(cls)", "③ classNames(cls)", "④ classNames[cls]"],
+                correct: 3,
+                explanation: "미리 정의된 <code>classNames</code>라는 파이썬 <strong>리스트(List)</strong>에서 특정 위치의 요소를 가져올 때는 대괄호 <code>[]</code> 안에 인덱스를 넣어 사용합니다."
+            },
+            {
+                question: "7. 드론 자율 비행 로직 중 <code>if cx < FRAME_W * 0.4: direction = 'LEFT'</code> 코드는 어떤 상황을 의미하나요?",
+                options: ["① 객체의 중심이 화면 오른쪽 40% 영역에 있을 때", "② 객체의 중심이 화면 왼쪽 40% 영역에 치우쳐 있을 때", "③ 객체 크기가 화면 40%보다 작을 때", "④ 신뢰도가 40% 미만일 때"],
+                correct: 1,
+                explanation: "x좌표(cx)의 값이 작다는 것은 화면의 왼쪽을 의미합니다. 드론이 화면 중앙을 맞추기 위해 <strong>왼쪽으로 이동(회전)</strong>하라는 지시입니다."
+            },
+            {
+                question: "8. <code>elif cx > FRAME_W * 0.6: 'RIGHT' else: 'CENTER'</code> 로직에서 드론이 <strong>'CENTER(호버링)'</strong> 상태가 되는 cx의 범위는?",
+                options: ["① 0% ~ 40%", "② 60% ~ 100%", "③ 40% ~ 60%", "④ 좌표가 없을 때"],
+                correct: 2,
+                explanation: "왼쪽(<40%)도 아니고 오른쪽(>60%)도 아닌 <strong>중앙 허용 오차 범위(40~60%)</strong> 내에 목표물이 들어왔을 때 안정적으로 CENTER를 유지합니다."
+            },
+            {
+                question: "9. 결과 화면 프레임(frame) 위에 'person 0.85'와 같은 글자(Text) 라벨을 덧씌워 그리기 위해 사용하는 OpenCV 함수는?",
+                options: ["① cv2.drawText()", "② cv2.putText()", "③ cv2.print()", "④ cv2.writeString()"],
+                correct: 1,
+                explanation: "OpenCV에서 이미지나 영상 프레임 위에 텍스트를 출력할 때는 <code>cv2.putText()</code> 함수를 사용합니다."
+            },
+            {
+                question: "10. 실시간 영상을 처리하는 무한 루프(while) 안에서, 키보드 특정 키를 누르면 프로그램이 종료되게 하는 <code>if cv2.waitKey(1) == ord('__'): break</code>에 가장 흔히 쓰이는 키는?",
+                options: ["① 'e'", "② 'x'", "③ 's'", "④ 'q'"],
+                correct: 3,
+                explanation: "<code>cv2.waitKey()</code>는 키보드 입력을 받습니다. 보통 영상 처리에서는 <strong>Quit(종료)</strong>을 의미하는 <code>'q'</code>를 눌러 루프를 탈출하도록 코딩합니다."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        const feedbackEl = document.getElementById('feedback');
+        const nextBtn = document.getElementById('next-btn');
+        const progressEl = document.getElementById('progress');
+
+        // 문제 렌더링 함수
+        function loadQuestion() {
+            // 상단 진행바 업데이트
+            progressEl.style.width = `${((currentQuestion) / quizData.length) * 100}%`;
+            
+            // 상태 초기화
+            feedbackEl.style.display = 'none';
+            nextBtn.style.display = 'none';
+            optionsEl.innerHTML = '';
+            
+            const q = quizData[currentQuestion];
+            questionEl.innerHTML = q.question; // <code> 태그를 위해 innerHTML 사용
+            
+            // 선택지 버튼들 렌더링
+            q.options.forEach((optionText, index) => {
+                const button = document.createElement('button');
+                button.innerHTML = optionText;
+                button.classList.add('option-btn');
+                button.onclick = () => checkAnswer(index, button);
+                optionsEl.appendChild(button);
+            });
+        }
+
+        // 정답 체크 및 피드백 표시
+        function checkAnswer(selectedIndex, button) {
+            const q = quizData[currentQuestion];
+            const allButtons = optionsEl.querySelectorAll('.option-btn');
+            
+            // 중복 클릭 방지를 위해 모든 버튼 비활성화
+            allButtons.forEach(btn => btn.disabled = true);
+            
+            // 정답/오답 판별
+            if (selectedIndex === q.correct) {
+                button.classList.add('correct');
+                feedbackEl.style.backgroundColor = '#ffffff';
+                feedbackEl.style.borderLeft = '6px solid var(--color-success)';
+                feedbackEl.innerHTML = "<span class='feedback-title' style='color: var(--color-success);'>✅ 정답입니다!</span>" + 
+                                       "<span style='color: #333; font-weight: 500;'><b>💡 솔루션:</b> " + q.explanation + "</span>";
+                score++;
+            } else {
+                button.classList.add('wrong');
+                allButtons[q.correct].classList.add('correct'); // 틀렸을 때 진짜 정답도 표시
+                feedbackEl.style.backgroundColor = '#ffffff';
+                feedbackEl.style.borderLeft = '6px solid var(--color-error)';
+                feedbackEl.innerHTML = "<span class='feedback-title' style='color: var(--color-error);'>❌ 오답입니다.</span>" + 
+                                       "<span style='color: #333; font-weight: 500;'><b>💡 솔루션:</b> " + q.explanation + "</span>";
+            }
+            
+            // 피드백 박스와 다음 버튼 부드럽게 등장
+            feedbackEl.style.display = 'block';
+            feedbackEl.style.opacity = '0';
+            setTimeout(() => {
+                feedbackEl.style.transition = 'opacity 0.4s ease';
+                feedbackEl.style.opacity = '1';
+            }, 10);
+            
+            nextBtn.style.display = 'block';
+            
+            // 마지막 문제면 버튼 텍스트 변경
+            if(currentQuestion === quizData.length - 1) {
+                nextBtn.innerHTML = "결과 확인하기 🏆";
+            }
+        }
+
+        // 다음 문제로 이동
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        // 결과 화면 표시
+        function showResult() {
+            document.getElementById('quiz-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'block';
+            
+            // 점수에 따른 멘트 조절 가능
+            document.getElementById('score').textContent = `${score} / ${quizData.length}`;
+        }
+
+        // 첫 문제 로드
+        loadQuestion();
+    </script>
+</body>
+</html>
